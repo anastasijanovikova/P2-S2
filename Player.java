@@ -1,3 +1,5 @@
+package snakes;
+
 /**
  * Provides players for the Snakes and Ladders game.
  * A player knows his name and position on the game board.
@@ -7,9 +9,6 @@
  * Is created and used inside the (@link Square) class.
  * Is build of (@link ISquare).
  */
-
-package snakes;
-
 public class Player {
 
 	private String name;
@@ -47,7 +46,7 @@ public class Player {
 	public boolean moveToSquare(Game game, int position) {
 		assert position > 0 && position < game.getSize();
 		square.leave(this);
-		square = game.findSquare(position);
+		square = game.getSquare(position).landHereOrGoHome();
 		square.enter(this);
 		return true;
 	}

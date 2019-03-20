@@ -1,3 +1,5 @@
+package snakes;
+
 /**
  * Represents a square on a game board.
  * Knows its position on the board and
@@ -11,9 +13,6 @@
  * Is build of (@link Game) and of (@Player).
  * Is tested inside the (@link SquareTest) class.
  */
-
-package snakes;
-
 public class Square implements ISquare {
 
 	protected int position;

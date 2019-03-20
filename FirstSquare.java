@@ -1,3 +1,8 @@
+package snakes;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents the first square of the game board.
  * Can hold multiple players.
@@ -5,13 +10,7 @@
  * Is created and used inside the (@link Game) class.
  * Extends (@link Square).
  */
-
-package snakes;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class FirstSquare extends Square {
+public class FirstSquare extends Square{
 
 	private List<Player> players;
 

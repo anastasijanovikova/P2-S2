@@ -1,3 +1,5 @@
+package snakes;
+
 /**
  * Selects a random player except the current player.
  * Moves the selected player to a random square.
@@ -8,9 +10,6 @@
  * Implements (@link ISquare).
  * Is tested inside the (@ScrambleUpSquareTest) class.
  */
-
-package snakes;
-
 public class ScrambleUp extends Square implements ISquare{
 
     public ScrambleUp(Game game, int position) {

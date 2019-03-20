@@ -1,12 +1,11 @@
+package snakes;
+
 /**
  * Moves the entering player to a specified higher square.
  *
  * Is created and used inside the (@link Game) class.
  * Extends (@link Square).
  */
-
-package snakes;
-
 public class Ladder extends Square {
 
 	private int transport;

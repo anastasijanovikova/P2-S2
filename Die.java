@@ -1,3 +1,5 @@
+package snakes;
+
 /**
  * Represents a 6-faced die that can be rolled.
  * Chooses a random number between 1 and 6.
@@ -5,9 +7,6 @@
  * Is created and used inside the (@link Game) class.
  * Is tested inside the (@link DieTest) class.
  */
-
-package snakes;
-
 public class Die {
 	static final int FACES = 6;
 	

@@ -1,3 +1,5 @@
+package snakes;
+
 /**
  * Skips the next player's turn.
  *
@@ -10,9 +12,6 @@
  * Extends (@link Square).
  * Is tested inside the (@link SkipSquareTest) class.
  */
-
-package snakes;
-
 public class SkipSquare extends Square {
 
     public SkipSquare(Game game, int position) {

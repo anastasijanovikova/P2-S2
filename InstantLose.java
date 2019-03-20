@@ -1,3 +1,8 @@
+package snakes;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  * Takes the entering player out of the game.
  *
@@ -5,12 +10,6 @@
  * Extends (@link Square).
  * Is tested inside the (@link InstantLoseSquareTest) class.
  */
-
-package snakes;
-
-import java.util.ArrayList;
-import java.util.Collection;
-
 public class InstantLose extends Square implements ISquare {
 
 	public InstantLose(Game game, int position) {

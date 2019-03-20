@@ -1,3 +1,5 @@
+package snakes;
+
 /**
  * Swaps the entering player with
  * the player who plays next.
@@ -11,14 +13,14 @@
  * Extends (@link Square).
  * Is tested inside the (@link SwapSquareTest) class.
  */
-
-package snakes;
-
 public class SwapSquare extends Square {
 
 	private boolean hasSwapped;
 
-	public SwapSquare(Game game, int position) { super( game, position ); }
+	public SwapSquare(Game game, int position) {
+		super( game, position );
+		hasSwapped = false;
+	}
 	
 	@Override
 	public String squareLabel() {
@@ -30,7 +32,7 @@ public class SwapSquare extends Square {
 		if (!hasSwapped) {
 			hasSwapped = true;
 			game.swap(player);
-			this.enter(game.getNextPlayer());
+			super.enter(game.nextPlayer());
 		} else {
 			hasSwapped = false;
 			super.enter(player);
