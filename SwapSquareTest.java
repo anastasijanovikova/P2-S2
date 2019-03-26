@@ -14,7 +14,7 @@ public class SwapSquareTest extends SquareTest {
         game.setSquare(5, new SwapSquare(game, 5));
     }
 
-    @Test //Is this a test for Game instead of SwapSquare? Only game methods are used.
+    @Test
     public void moveToSwapSquare() {
         game.movePlayer(5); // moves Jack to normal square 6
         assertEquals(6, jack.position());
@@ -28,22 +28,14 @@ public class SwapSquareTest extends SquareTest {
 
     // Can you think of more game scenarios you need/want to cover to make sure your implementation is correct?
     @Test
-    public void swapSquareOccupied() {
+    public void afterSwapNextPlayersTurn() {
        ISquare swapSquare = game.getSquare(5);
-       swapSquare.enter(jack);
-       assertEquals("Jill switched places with Jack", 5, jill.position());
+       game.movePlayer(4); // Jack's turn
        assertEquals("Jack switched places with Jill", 1, jack.position());
-       swapSquare.enter(eric);
-       assertTrue(swapSquare.isOccupied());
-       assertEquals("Eric has to home", 1, eric.position());
-    }
-
-    @Test
-    public void landOnSwapSquare() {
-        ISquare swapSquare = game.getSquare(5);
-        swapSquare.enter(jack);
-        assertNotEquals("Jack is not on swapSquare", 5, jack.position());
-        assertEquals("Next player Jill is on swapSquare", 5, jill.position());
+       assertEquals("Jill switched places with Jack", 5, jill.position());
+       game.movePlayer(2); // Jill's turn
+       assertEquals("Jill moved two squares ahead", 7, jill.position());
+       assertEquals("Eric is still on square one", 1, eric.position());
     }
 
     @Test
@@ -51,9 +43,4 @@ public class SwapSquareTest extends SquareTest {
         ISquare swapSquare = game.getSquare(5);
         assertEquals("[5 (Swap)]", swapSquare.toString());
     }
-
-
-
-
-
 }

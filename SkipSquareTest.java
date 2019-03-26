@@ -12,8 +12,8 @@ public class SkipSquareTest extends SquareTest {
 	@Before
 	public void newGame() {
 		initializeGame(15);
-		game.setSquare(7, new SkipSquare(game, 7));
-		skipSquare = game.getSquare(7);
+		skipSquare = new SkipSquare(game, 7);
+		game.setSquare(7, skipSquare);
 	}
 
 	@Test
@@ -38,16 +38,23 @@ public class SkipSquareTest extends SquareTest {
 
 	@Test
 	public void onlyTwoPlayers(){
-
+		Square instantLose = new InstantLose(game, 4);
+		game.movePlayer(3);
+		assertTrue("The InstantLose Square is empty", !instantLose.isOccupied());
+		game.movePlayer(6);
+		assertEquals("Jill is on SkipSquare", 7, jill.position());
+		game.movePlayer(2);
+		assertEquals("Eric is still on FirstSquare", 1, eric.position());
+		assertEquals("Jill moves two squares further", 9, jill.position());
 	}
 
 	@Test
 	public void skipSquareOccupied(){
-		skipSquare.enter(jack);
+		game.movePlayer(6);
 		assertEquals("Jack is on SkipSquare", 7, jack.position());
-		skipSquare.enter(jill);
 		assertTrue(skipSquare.isOccupied());
-		assertEquals("Jill has to go home", 1, jill.position());
+		game.movePlayer(6);
+		assertEquals("Jill moved to SkipSquare but had to go home", 1, jill.position());
 	}
 
 	@Test

@@ -44,11 +44,22 @@ public class Player {
 	}
 
 	public boolean moveToSquare(Game game, int position) {
-		assert position > 0 && position < game.getSize();
+		assert position > 0 && position <= game.getSize();
 		square.leave(this);
 		square = game.getSquare(position).landHereOrGoHome();
 		square.enter(this);
 		return true;
+	}
+
+	public void enterSquare(Game game, int position) {
+		assert position > 0 && position <= game.getSize();
+		square = game.getSquare(position).landHereOrGoHome();
+		square.enter(this);
+	}
+
+	public void leaveSquare() {
+		assert invariant();
+		square.leave(this);
 	}
 
 	public String toString() {

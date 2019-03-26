@@ -31,8 +31,9 @@ public class SwapSquare extends Square {
 	public void enter(Player player) {
 		if (!hasSwapped) {
 			hasSwapped = true;
-			game.swap(player);
-			super.enter(game.nextPlayer());
+			game.swap(player, game.nextPlayer());
+			//this.enter(game.nextPlayer());
+			game.nextPlayer().enterSquare(game, this.position());
 		} else {
 			hasSwapped = false;
 			super.enter(player);
