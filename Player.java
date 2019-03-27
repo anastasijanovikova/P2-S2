@@ -57,11 +57,6 @@ public class Player {
 		square.enter(this);
 	}
 
-	public void leaveSquare() {
-		assert invariant();
-		square.leave(this);
-	}
-
 	public String toString() {
 		return name;
 	}

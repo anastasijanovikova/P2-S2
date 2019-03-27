@@ -34,15 +34,22 @@ public class ScrambleUpSquareTest extends SquareTest {
 		assertTrue("ScrambleUp is occupied", scrambleUp.isOccupied());
 	}
 
+	/**
+	 * Tests the (@link Game#moveRandomPlayer()) method.
+	 *
+	 * Indirect testing, since we don't know which player was scrambled up
+	 * and to which square he was moved.
+	 * He might even have stayed on the first square, so we can't assert that
+	 * another square has been occupied.
+	 *
+	 */
 	@Test
-	public void randomPlayerHasBeenMoved() {
-		game.movePlayer(4);
+	public void testMoveRandomPlayer() {
+		game.movePlayer(4); // A random player is scrambled up
 		assertEquals("Jack is on scrambleUp", 5, jack.position());
-		game.moveRandomPlayer();
+		game.moveRandomPlayer(); // Doesn't advance the game, but a player is again scrambled up
 		assertEquals("Jack is still on scrambleUp", 5, jack.position());
 	}
-
-	//TO DO: add 1-2 more specific ScrambleUp-tests
 
 	@Test
 	public void scrambleUpToString() {

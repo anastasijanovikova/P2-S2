@@ -22,9 +22,6 @@ public class ScrambleUp extends Square implements ISquare{
     }
 
     @Override
-    public void enter(Player player) {
-        super.enter(player);
-        game.moveRandomPlayer();
-    }
+    public boolean isScrambleUp() { return true; }
 }
 

@@ -39,13 +39,14 @@ public class SkipSquareTest extends SquareTest {
 	@Test
 	public void onlyTwoPlayers(){
 		Square instantLose = new InstantLose(game, 4);
+		game.setSquare(4, instantLose);
 		game.movePlayer(3);
 		assertTrue("The InstantLose Square is empty", !instantLose.isOccupied());
 		game.movePlayer(6);
 		assertEquals("Jill is on SkipSquare", 7, jill.position());
 		game.movePlayer(2);
 		assertEquals("Eric is still on FirstSquare", 1, eric.position());
-		assertEquals("Jill moves two squares further", 9, jill.position());
+		assertEquals("Jack moves two squares further", 9, jill.position());
 	}
 
 	@Test
@@ -61,8 +62,5 @@ public class SkipSquareTest extends SquareTest {
 	public void skipSquareToString(){
 		assertEquals("[7 (Skip)]", skipSquare.toString());
 	}
-
-
-
 
 }

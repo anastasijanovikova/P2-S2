@@ -38,14 +38,6 @@ public class Square implements ISquare {
 		return game.findSquare(position, moves).landHereOrGoHome();
 	}
 
-	protected ISquare nextSquare() {
-		return game.getSquare(position+1);
-	}
-
-	protected ISquare previousSquare() {
-		return game.getSquare(position-1);
-	}
-
 	public ISquare landHereOrGoHome() { return this.isOccupied() ? game.firstSquare() : this; }
 
 	public boolean isInstantLose() {
@@ -81,6 +73,10 @@ public class Square implements ISquare {
 	public boolean isLastSquare() {
 		return false;
 	}
+
+	public boolean isSkipSquare() { return false; }
+
+	public boolean isScrambleUp() { return false; }
 
 	protected String player() {
 		return this.isOccupied() ? ("<" + this.player + ">") : "";

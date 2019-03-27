@@ -19,10 +19,7 @@ public class SkipSquare extends Square {
     }
 
     @Override
-    public void enter(Player player){
-        game.skip();
-        super.enter(player);
-    }
+    public boolean isSkipSquare() { return true; }
 
     @Override
     public String squareLabel() {

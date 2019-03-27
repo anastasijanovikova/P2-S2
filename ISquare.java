@@ -71,4 +71,16 @@ public interface ISquare {
 	 * @return true if this square is a (@link InstantLose) square
 	 */
 	public boolean isInstantLose();
+
+	/**
+	 *
+	 * @return true if this square is a (@link SkipSquare) square
+	 */
+	public boolean isSkipSquare();
+
+	/**
+	 *
+	 * @return true if this square is a (@link ScrambleUp) square
+	 */
+	public boolean isScrambleUp();
 }

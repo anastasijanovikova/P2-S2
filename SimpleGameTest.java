@@ -73,4 +73,5 @@ public class SimpleGameTest {
 		assertTrue(game.isOver());
 		assertEquals(jill, game.winner());
 	}
+
 }

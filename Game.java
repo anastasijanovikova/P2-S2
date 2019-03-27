@@ -93,7 +93,8 @@ public class Game {
 
 	/**
 	 * Returns the next player, who is currently on top of the queue
-     * since the current player has already been removed.
+     * since the current player has already been removed inside
+	 * the movePlayer() method.
      *
 	 * Is used in the (@link SwapSquare) class.
      *
@@ -108,7 +109,7 @@ public class Game {
 	/**
 	 * It's job is to tell the player where he has to go
 	 * according to the number the die has rolled.
-	 * Is used in play().
+	 * Is used inside play().
 	 *
 	 * @param roll int containing the number the die rolled
 	 */
@@ -136,8 +137,7 @@ public class Game {
 	 */
 	private void applieEffectsSpecialSquares(Player player) {
 		if (player.square().isInstantLose()) {
-			takePlayerOutOfHisSquare(player);
-			player.leaveSquare();
+			takePlayerOutOfSquare(player); // player still thinks he's on instantLose
 		}
 		if (player.square().isSkipSquare()) {
 			skip();
@@ -159,24 +159,32 @@ public class Game {
 	}
 
 	/**
-	 * Makes one player leave his square
-	 * and another player enter it.
+	 * Makes the next player leave his square
+	 * and the current player enter this square.
+	 * Used inside the (@link SwapSquare) class.
 	 *
-	 * @param current
-	 * @param next
+	 * @param current the current Player
+	 * @param next the Player who plays next
 	 */
 
 	public void swap(Player current, Player next) {
 		ISquare nextSquare = next.square();
-		takePlayerOutOfHisSquare(next);
+		takePlayerOutOfSquare(next);
 		current.enterSquare(this, nextSquare.position());
 	}
 
-	public void takePlayerOutOfHisSquare(Player player) {
+	/**
+	 * Tells the square to remove the player on it.
+	 * The player still thinks he's on this square,
+	 * since removing it from him would violate the Player#invariant()
+	 * that his square should not be null.
+	 *
+	 * @param player the Player to be removed
+	 */
+	public void takePlayerOutOfSquare(Player player){
 		assert player.square() != null;
 		ISquare leaveSquare = player.square();
 		leaveSquare.leave(player);
-		if (!leaveSquare.isFirstSquare()) { assert !leaveSquare.isOccupied(); }
 	}
 
 	public void moveRandomPlayer() {
@@ -185,14 +193,14 @@ public class Game {
 	    player.moveToSquare(this, square.position());
     }
 
-	public Player getRandomPlayer() {
-        Player[] arrayPlayers = players.toArray(new Player[players.size()-1]);
+	private Player getRandomPlayer() {
+        Player[] arrayPlayers = players.toArray(new Player[players.size()]);
         Random gen = new Random();
         int indexRandomPlayer = gen.nextInt(players.size()-1);
         return arrayPlayers[indexRandomPlayer];
     }
 
-    public ISquare getRandomSquare() {
+    private ISquare getRandomSquare() {
         Random gen = new Random();
         int position = gen.nextInt(this.size) + 1;
         return getSquare(position);
@@ -265,10 +273,6 @@ public class Game {
 			target = size - (target - size);
 		}
 		return this.getSquare(target);
-	}
-
-	public Die getDie() {
-		return die;
 	}
 
 	public int getSize() { return size; }

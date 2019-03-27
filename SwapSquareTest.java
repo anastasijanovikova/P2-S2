@@ -26,7 +26,6 @@ public class SwapSquareTest extends SquareTest {
         assertEquals("Eric switched places with Jill",5, eric.position());
     }
 
-    // Can you think of more game scenarios you need/want to cover to make sure your implementation is correct?
     @Test
     public void afterSwapNextPlayersTurn() {
        ISquare swapSquare = game.getSquare(5);

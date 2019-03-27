@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 public class InstantLoseSquareTest {
 	private Player jack;
@@ -22,7 +21,7 @@ public class InstantLoseSquareTest {
 		game = new Game(12, args);
 		ISquare instantLose = new InstantLose(game, 4);
 		game.setSquareToLadder(2, 2);
-		game.setSquareToLadder(7, -5);
+		game.setSquareToSnake(7, -5);
 		game.setSquare(4, instantLose);
 	}
 
@@ -77,17 +76,18 @@ public class InstantLoseSquareTest {
 	}
 
 	@Test
-	public void transportToInstantLose() {
+	public void viaLadderToInstantLose() {
 		game.movePlayer(1); // Jack to ladder
 		assertTrue("Ladder not occupied", !game.getSquare(2).isOccupied());
 		assertTrue("InstantLose not occupied", !game.getSquare(4).isOccupied());
 	}
 
-	@Test(expected=AssertionError.class)
-	public void jackHasNoSquare() throws AssertionError {
-		game.movePlayer(3);
+	@Test
+	public void viaSnakeAndLadderToInstantLose() {
+		game.movePlayer(6); // Jack to snake
+		assertTrue("Snake not occupied", !game.getSquare(7).isOccupied());
+		assertTrue("Ladder not occupied", !game.getSquare(2).isOccupied());
 		assertTrue("InstantLose not occupied", !game.getSquare(4).isOccupied());
-		jack.position(); // should throw AssertionError
 	}
 
 	@Test
@@ -95,9 +95,4 @@ public class InstantLoseSquareTest {
 		ISquare instantLose = game.getSquare(4);
 		assertEquals("[4 (InstantLose)]", instantLose.toString());
 	}
-
-
-
-
-
 }
